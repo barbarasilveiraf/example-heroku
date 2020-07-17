@@ -2,9 +2,6 @@ import streamlit as st
 from vega_datasets import data
 import pandas as pd
 import altair as alt
-import mlflow
-from mlflow import pyfunc
-from joblib import dump, load
 import sys
 
 @st.cache
@@ -55,34 +52,13 @@ def analise_dataset(df):
     if st.checkbox("Mostrar Summay", False):
         st.write(df.describe())
 
-def executa_modelo():
-    sepalLength = st.number_input("Sépala - Comprimento")
-    sepalWidth = st.number_input("Sépala - Largura")
-    petalLength = st.number_input("Pétala - Comprimento")
-    petalWidth = st.number_input("Pépala - Largura")
-    
-    click_predict = st.button("Predizer")
-    
-    if click_predict:
-        sys.path.append("../../")
-        #st.write("Hello, Interactive Streamlit!")
-        model = pyfunc.load_model("../../../output/iris/")
-        artifacts = load(model.context.artifacts["model"])
-        colunas = artifacts["iris"]["columns"]
-        valores = [sepalLength, sepalWidth, petalLength, petalWidth]
-        df_pred = pd.DataFrame([valores], columns=colunas)
-        resultado = model.predict(df_pred)
-        st.markdown("## Resultado")
-        st.write(resultado[0])
-
-
 def main(): 
     st.title("Dataset Iris")
     
     df = load_data()
         
     st.sidebar.title("What to do")
-    menu = ["Instruções", "Exploração DataSet", "Executa Modelo"]
+    menu = ["Instruções", "Exploração DataSet"]
     app_mode = st.sidebar.selectbox("Escolha uma  opção:",
         menu)
     

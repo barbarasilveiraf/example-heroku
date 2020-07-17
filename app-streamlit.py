@@ -37,8 +37,8 @@ def analise_dataset(df):
                   """)
         var_filtro = "petalWidth"
         var_filtro2 = "petalLength"
-        petalWidth = st.slider("Filtrar largura da pétala maior ou igual ", min(df[var_filtro].unique()), max(df[var_filtro].unique()), step=0.1, format="%f")
-        petalLength = st.slider("Filtrar comprimento da pétala maior ou igual ", min(df[var_filtro2].unique()), max(df[var_filtro2].unique()), step=0.1, format="%f")
+        petalWidth = st.slider("Filtrar largura da pétala maior ou igual ", min_value=float(min(df[var_filtro].unique())), max_value=float(max(df[var_filtro].unique())),  step=0.1, format='%f')
+        petalLength = st.slider("Filtrar comprimento da pétala maior ou igual ", min_value=float(min(df[var_filtro2].unique())), max_value=float(max(df[var_filtro2].unique())), step=0.1, format="%f")
         
         df_filter = df[(df[var_filtro] >= petalWidth) & (df[var_filtro2] > petalLength) ]
         

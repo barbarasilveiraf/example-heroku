@@ -66,7 +66,7 @@ def main():
         st.sidebar.success('Para continuar selecione "'+menu[1]+'".')
         instrucoes()
     elif app_mode == menu[1]:
-        st.sidebar.success('Para continuar selecione "'+menu[2]+'".')
+        #st.sidebar.success('Para continuar selecione "'+menu[2]+'".')
         analise_dataset(df)
             
 
